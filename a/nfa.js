@@ -30,21 +30,31 @@ class NFA {
 
   verificar(string, el) {
     //el.value = "";
-    el.append('Verificando string:' + string + "\n");
+    let r = 'Verificando string:' + string + "\n";
     string = string.split('');
     let nfa = this;
-    let atual = this.inicial;
+    let atual = [this.inicial];
+
     string.forEach(function (d, i) {
-      let tr = atual.pegaTransicao(d);
-      if (tr) {
-        atual = nfa.pegaEstado(tr.destino);
-      }
-      el.append("posicao:" + (i + 1) + " valor:" + d + " destino:" + atual.nome + "\n");
-      console.log(i, "valor:", d, " destino:", atual.nome)
+      let next = []
+      atual.forEach(function (a, j) {
+        let tr = a.pegaTransicoes(d);
+        console.log(tr)
+        if (tr) {
+          tr.forEach(function (t) {
+            next.push(nfa.pegaEstado(t.destino));
+            console.log(i, "valor:", d, " destino:", t.destino)
+            r += "posição:" + (i + 1) + " valor:" + d + " destino:" + t.destino + "\n";
+          })
+        }
+      })
+      atual = next;
     });
 
-    el.append(atual.isFinal() ? 'String aceita\n' : 'String não aceita\n');
+    let aceita = atual.some(function (i) {
+      return i.isFinal()
+    })
 
-    console.log('isFinal', atual.isFinal());
+    el.value = r + (aceita ? 'String aceita\n' : 'String não aceita\n');
   }
 }

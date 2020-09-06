@@ -10,8 +10,8 @@ class Estado {
   isFinal() {
     return this.final;
   }
-  pegaTransicoes(valor) {
-    return this.transicoes.filter(function (i) {
+  pegaTransicao(valor) {
+    return this.transicoes.find(function (i) {
       return i.valor == valor;
     });
   }
