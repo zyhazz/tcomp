@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>NFA</title>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <h2>TComp NFA</h2>
+    <div class="row">
+      <div class="col">
+        Estados
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <textarea class="form-control" id="estados" rows="1">a,b,c,d</textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        Alfabeto
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <textarea class="form-control" id="alfabeto" rows="1">0,1</textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        Transições
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <textarea class="form-control" id="transicoes" rows="7">a,1,b;b,1,c;c,0,d;d,1,a</textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        Inicial
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <textarea class="form-control" id="inicial" rows="1">a</textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        Finais
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <textarea class="form-control" id="finais" rows="1">a,d</textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        String a verificar
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <textarea class="form-control" id="string" rows="1">011010110</textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        Resposta
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <textarea class="form-control" id="resposta" rows="7"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-primary" onclick="verificar()">Verificar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="estado.js"></script>
+  <script src="transicao.js"></script>
+  <script src="nfa.js"></script>
+  <script>
+    function verificar() {
+      let nfa = new NFA(
+        document.getElementById('estados').value.split(','),
+        document.getElementById('alfabeto').value.split(','),
+        document.getElementById('transicoes').value.split(';').map(function (i) { return i.split(',') }),
+        document.getElementById('inicial').value,
+        document.getElementById('finais').value.split(',')
+      );
+      nfa.verificar(document.getElementById('string').value, document.getElementById('resposta'));
+    }
+  </script>
+</body>
+
+</html>

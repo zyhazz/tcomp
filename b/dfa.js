@@ -3,8 +3,8 @@ class DFA{
     this.estados = estados;
     this.alfabeto = alfabeto;
     this.transicoes = transicoes;
-    this.inicial = inicial;
-    this.finais = finais;
+    //this.inicial = inicial;
+    //this.finais = finais;
   }
   
   verificar(string){
