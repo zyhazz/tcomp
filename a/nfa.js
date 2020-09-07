@@ -39,7 +39,6 @@ class NFA {
       let next = []
       atual.forEach(function (a, j) {
         let tr = a.pegaTransicoes(d);
-        console.log(tr)
         if (tr) {
           tr.forEach(function (t) {
             next.push(nfa.pegaEstado(t.destino));
@@ -50,6 +49,8 @@ class NFA {
       })
       atual = next;
     });
+    
+    console.log('estados finais:', atual)
 
     let aceita = atual.some(function (i) {
       return i.isFinal()
