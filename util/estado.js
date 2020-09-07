@@ -15,4 +15,9 @@ class Estado {
       return i.valor == valor;
     });
   }
+  pegaTransicoes(valor) {
+    return this.transicoes.filter(function (i) {
+      return i.valor == valor || i.valor == '&';
+    });
+  }
 }

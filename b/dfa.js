@@ -13,7 +13,7 @@ class DFA {
     transicoes.forEach(function (t) {
       nfa.pegaEstado(t[0]).transicoes.push(new Transicao(t[1], t[2]));
     })
-
+    
     this.inicial = this.pegaEstado(inicial)
 
     finais.forEach(function (f) {

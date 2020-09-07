@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>DFA</title>
+  <title>NFA to DFA</title>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -25,14 +25,14 @@
 
 <body>
   <div class="container">
-    <h2>TComp DFA</h2>
+    <h2>TComp NFA to DFA</h2>
     <div class="row">
       <div class="col">
         Estados
       </div>
       <div class="col">
         <div class="form-group">
-          <textarea class="form-control" id="estados" rows="1">a,b,c,d</textarea>
+          <textarea class="form-control" id="estados" rows="1">a,b,c</textarea>
         </div>
       </div>
     </div>
@@ -52,7 +52,7 @@
       </div>
       <div class="col">
         <div class="form-group">
-          <textarea class="form-control" id="transicoes" rows="7">a,1,b;b,1,c;c,0,d;d,1,a</textarea>
+          <textarea class="form-control" id="transicoes" rows="7">a,1,a;a,0,a;a,0,b;b,0,c</textarea>
         </div>
       </div>
     </div>
@@ -72,7 +72,7 @@
       </div>
       <div class="col">
         <div class="form-group">
-          <textarea class="form-control" id="finais" rows="1">a,d</textarea>
+          <textarea class="form-control" id="finais" rows="1">c</textarea>
         </div>
       </div>
     </div>
@@ -82,17 +82,35 @@
       </div>
       <div class="col">
         <div class="form-group">
-          <textarea class="form-control" id="string" rows="1">011010110</textarea>
+          <textarea class="form-control" id="string" rows="1">100100100</textarea>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        Resposta
+        DFA
+      </div>
+      <div class="col">
+        Resposta NFA
+      </div>
+      <div class="col">
+        Resposta DFA
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <textarea class="form-control" id="dfa" rows="7"></textarea>
+        </div>
       </div>
       <div class="col">
         <div class="form-group">
-          <textarea class="form-control" id="resposta" rows="7"></textarea>
+          <textarea class="form-control" id="resposta-nfa" rows="7"></textarea>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <textarea class="form-control" id="resposta-dfa" rows="7"></textarea>
         </div>
       </div>
     </div>
@@ -108,17 +126,26 @@
 
   <script src="../util/estado.js"></script>
   <script src="../util/transicao.js"></script>
-  <script src="dfa.js"></script>
+  <script src="../a/nfa.js"></script>
+  <script src="../b/dfa.js"></script>
+  <script src="nfa_to_dfa.js"></script>
   <script>
+    let nfa, dfa;
     function verificar() {
-      let dfa = new DFA(
+      nfa = new NFA(
         document.getElementById('estados').value.split(','),
         document.getElementById('alfabeto').value.split(','),
         document.getElementById('transicoes').value.split(';').map(function (i) { return i.split(',') }),
         document.getElementById('inicial').value,
         document.getElementById('finais').value.split(',')
       );
-      dfa.verificar(document.getElementById('string').value, document.getElementById('resposta'));
+      nfa.verificar(document.getElementById('string').value, document.getElementById('resposta-nfa'));
+
+      dfa = NFAtoDFA(nfa);
+      document.getElementById("dfa").value = JSON.stringify(dfa, null, 2);
+
+      dfa.verificar(document.getElementById('string').value, document.getElementById('resposta-dfa'));
+
     }
   </script>
 </body>

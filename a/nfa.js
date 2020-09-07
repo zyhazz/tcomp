@@ -56,6 +56,8 @@ class NFA {
       return i.isFinal()
     })
 
+    console.log('isFinal', aceita);
+
     el.value = r + (aceita ? 'String aceita\n' : 'String não aceita\n');
   }
 }
