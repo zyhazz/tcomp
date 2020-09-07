@@ -12,7 +12,7 @@ class Estado {
   }
   pegaTransicoes(valor) {
     return this.transicoes.filter(function (i) {
-      return i.valor == valor;
+      return i.valor == valor || i.valor == '&';
     });
   }
 }
