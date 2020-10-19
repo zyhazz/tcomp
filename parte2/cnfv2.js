@@ -85,7 +85,7 @@ function isUnitaria(regra) {
 }
 
 function addRegra(regra) {
-  
+  console.log(regra)
   let regratxt = regra.reduce(function (s, r) {
     return s + r.value
   }, "");
@@ -257,7 +257,10 @@ function verificaVariaveis() {
 }
 
 function nextVar() {
-  for (var citer = 'A'.charCodeAt(0); citer <= 'Z'.charCodeAt(0); ++citer) {
+  for (var citer = 'A'.charCodeAt(0); citer <= 'z'.charCodeAt(0); ++citer) {
+    if(citer == 90){
+      citer = 97;//pula caracteres especiais
+    }
     if (variaveis.has(String.fromCharCode(citer)) == false) {
       variaveis.add(String.fromCharCode(citer))
       return String.fromCharCode(citer);
