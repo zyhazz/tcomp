@@ -27,7 +27,7 @@
   <div class="container">
     <h2>q1</h2>
     <div class="row">
-      <div class="col">
+      <div class="col-2">
         Alfabeto
       </div>
       <div class="col">
@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-2">
         Gramática
       </div>
       <div class="col">
@@ -53,7 +53,7 @@ T$theory of computation| |automata|grammars</textarea>
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-2">
         CNF
       </div>
       <div class="col">
@@ -63,7 +63,7 @@ T$theory of computation| |automata|grammars</textarea>
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-2">
         CYK
       </div>
       <div class="col">
@@ -73,7 +73,7 @@ T$theory of computation| |automata|grammars</textarea>
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-2">
         Resposta
       </div>
       <div class="col">
@@ -83,7 +83,7 @@ T$theory of computation| |automata|grammars</textarea>
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-2">
       </div>
       <div class="col">
         <button type="button" class="btn btn-primary" onclick="verificar()">Verificar</button>
@@ -91,10 +91,11 @@ T$theory of computation| |automata|grammars</textarea>
     </div>
   </div>
   <script src="cnf.js"></script>
-  <!-- <script src="token.js"></script> -->
+  <script src="cyk.js"></script>
   <script>
     function verificar() {
       toCNF();
+      doCYK();
     }
   </script>
 </body>

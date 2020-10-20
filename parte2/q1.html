@@ -27,7 +27,7 @@
   <div class="container">
     <h2>q1</h2>
     <div class="row">
-      <div class="col">
+      <div class="col-2">
         Alfabeto
       </div>
       <div class="col">
@@ -37,7 +37,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-2">
         Gramática
       </div>
       <div class="col">
@@ -50,7 +50,7 @@ N$!N|(F)|p|q|r</textarea>
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-2">
         CNF
       </div>
       <div class="col">
@@ -60,17 +60,17 @@ N$!N|(F)|p|q|r</textarea>
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-2">
         CYK
       </div>
       <div class="col">
         <div class="form-group">
-          <textarea class="form-control" id="cyk1" rows="7"></textarea>
+          <textarea class="form-control" id="cyk1" rows="7">p->(q/\r\/!p)</textarea>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-2">
         Resposta
       </div>
       <div class="col">
@@ -88,10 +88,11 @@ N$!N|(F)|p|q|r</textarea>
     </div>
   </div>
   <script src="cnf.js"></script>
-  <!-- <script src="token.js"></script> -->
+  <script src="cyk.js"></script>
   <script>
     function verificar() {
       toCNF();
+      doCYK();
     }
   </script>
 </body>
